@@ -16,11 +16,14 @@
     args:
       chdir: /opt/docker
 
+  - name: create tag to image
+    command: docker tag hello 160365781997.dkr.ecr.ap-northeast-2.amazonaws.com/candipay/hello
+
   - name: push image on to aws ecr docker repository
-    command: docker docker push candipay/hello
+    command: docker push 160365781997.dkr.ecr.ap-northeast-2.amazonaws.com/candipay/hello
 
   - name: remove docker images from ansible server 
-    command: docker rmi hello:lates candipay/hello
+    command: docker rmi 160365781997.dkr.ecr.ap-northeast-2.amazonaws.com/candipay/hello hello:latest
     ignore_errors: yes
 
     # Option-2 : creating docker image using docker_image module
