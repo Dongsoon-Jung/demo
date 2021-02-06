@@ -1,0 +1,25 @@
+# Option-1 : Creating docker image using command module
+# become : sudo 대신에 사용.true/false/yes/no
+# true : sudo 명령어(root), 
+# yes: sudo -u weblogic ./start.sh 의 경우 become: yes, become_user: weblogic
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: building docker image
+    command: docker build -t simple-devops-image .
+    args:
+      args: /opt/docker
+
+# Option-2 : creating docker image using docker_image module
+# 아래는 ansible에서 제공하는 docker_image 모듀를 사용한 생성인데 쓸 필요가 없을듯.
+
+# tasks:
+#   - name: building docker image
+#     docker_image:
+#       build:
+#         path: /opt/docker
+#       name: simple-devops-image
+#     tag: v1
+#     source: build
+    
