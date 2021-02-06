@@ -8,13 +8,20 @@
   tasks:
   - name: login to aws ecr
     command: aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 160365781997.dkr.ecr.ap-northeast-2.amazonaws.com
-    
+
   - name: building docker image
-    command: docker build -t simple-devops-image .
+    command: docker build -t hello:latest .
     args:
       chdir: /opt/docker
 
-# Option-2 : creating docker image using docker_image module
+  - name: push image on to aws ecr docker repository
+    command: docker docker push candipay/hello
+
+  - name: remove docker images from ansible server 
+    command: docker rmi hello:lates candipay/hello
+    ignore_errors: yes
+
+    # Option-2 : creating docker image using docker_image module
 # 아래는 ansible에서 제공하는 docker_image 모듀를 사용한 생성인데 쓸 필요가 없을듯.
 
 # tasks:

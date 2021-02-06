@@ -1,4 +1,4 @@
-FROM 160365781997.dkr.ecr.ap-northeast-2.amazonaws.com/candipay/hello:0.0.1
+FROM 160365781997.dkr.ecr.ap-northeast-2.amazonaws.com/candipay/hello:latest
 
 #FROM adoptopenjdk:latest
 
