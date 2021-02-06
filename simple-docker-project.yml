@@ -2,6 +2,11 @@
 - hosts: all
   become: true
   tasks:
+  - name: login to aws ecr
+    command: ./aws_login.sh
+    args:
+      chdir: /opt/docker
+
   - name: stop if we have old docker container
     command: docker stop hello-container
     ignore_errors: yes

@@ -7,7 +7,9 @@
   become: true
   tasks:
   - name: login to aws ecr
-    command: aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin 160365781997.dkr.ecr.ap-northeast-2.amazonaws.com
+    command: ./aws_login.sh
+    args:
+      chdir: /opt/docker
 
   - name: building docker image
     command: docker build -t hello:latest .
