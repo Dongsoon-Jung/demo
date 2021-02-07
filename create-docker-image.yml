@@ -3,18 +3,18 @@
 # true : sudo 명령어(root), 
 # yes: sudo -u weblogic ./start.sh 의 경우 become: yes, become_user: weblogic
 ---
-- hosts: all
+- hosts: ansible-server
   become: true
   tasks:
   - name: login to aws ecr
     command: ./aws_login.sh
     args:
-      chdir: /opt/docker
+      chdir: /opt/kubernetes
 
   - name: building docker image
     command: docker build -t hello:latest .
     args:
-      chdir: /opt/docker
+      chdir: /opt/kubernetes
 
   - name: create tag to image
     command: docker tag hello 160365781997.dkr.ecr.ap-northeast-2.amazonaws.com/candipay/hello
